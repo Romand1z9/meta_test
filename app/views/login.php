@@ -19,11 +19,11 @@
 					<form method="post" action="/registration" id="form_add">
 					  	<div class="form-group">
 					        <label for="counter_id" class="col-form-label">Имя</label>
-					        <input type="text" class="form-control" name="name" required>
+					        <input type="text" class="form-control" name="name">
 					    </div>
 					    <div class="form-group">
 					        <label for="counter_id" class="col-form-label">Фамилия</label>
-					        <input type="text" class="form-control" name="surname" required>
+					        <input type="text" class="form-control" name="surname">
 					    </div>
 					    <div class="form-group">
 							<label for="counter_data" class="col-form-label">Дата рождения</label>
@@ -31,11 +31,11 @@
 					    </div>
 					    <div class="form-group">
 					        <label for="counter_id" class="col-form-label">Компания</label>
-					        <input type="text" class="form-control" name="company" required>
+					        <input type="text" class="form-control" name="company">
 					    </div>
 					    <div class="form-group">
 					        <label for="counter_id" class="col-form-label">Должность</label>
-					        <input type="text" class="form-control" name="position" required>
+					        <input type="text" class="form-control" name="position">
 					    </div>
 					    <div class="form-group">
 					        <label for="counter_id" class="col-form-label">Телефон</label>

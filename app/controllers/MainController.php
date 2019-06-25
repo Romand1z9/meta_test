@@ -5,7 +5,6 @@ class MainController
 	protected $layout = 'main';
 	protected $content = '';
 
-
 	public function render()
 	{
 		$content = $this->content;

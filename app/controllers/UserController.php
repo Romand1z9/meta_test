@@ -1,6 +1,7 @@
 <?php 
 
 require_once CONTROLLERS_PATH.'MainController.php';
+require_once MODELS_PATH.'User.php';
 
 class UserController extends MainController
 {
@@ -22,7 +23,7 @@ class UserController extends MainController
 			'phone' =>  element('phone', $data),
 		];
 
-		echo dump($data_for_registration);
+		User::addUser($data_for_registration);
 
 	}
 
