@@ -15,15 +15,29 @@ class User
             {
                 if (!$value)
                 {
-                    throw new Exception($field." is required.");
+                    throw new Exception(sprintf(lang('errors.required'), lang('user.'.$field)));
                 }
                 if (!self::check($field, $value))
                 {
-                    throw new Exception($field." incorrect format.");
+                    throw new Exception(sprintf(lang('errors.incorrect_format'), lang('user.'.$field)));
                 }
             }
 
-            $result['success'] = TRUE;
+            $csvFile = new CSVFile('users', [
+                lang('user.name'),
+                lang('user.surname'),
+                lang('user.birthday'),
+                lang('user.company'),
+                lang('user.position'),
+                lang('user.phone'),
+            ]);
+
+            if (!$csvFile->addRow(implode(",", $data)))
+            {
+                throw new Exception(lang('errors.add_user'));
+            }
+
+            $result['success'] = lang('user.registration_success');
 
         }
         catch (Exception $e)
@@ -31,19 +45,7 @@ class User
             $result['error'] = $e->getMessage();
         }
 
-        $csv = new CSVFile('users');
-
-        //$csv->getRows();
-
-        $new_row = sprintf("Имя: %s, Фамилия: %s, Дата рождения: %s, Компания: %s, Должность:%s, Телефон: %s", $data['name'], $data['surname'], $data['birthday'], $data['company'], $data['position'], $data['phone']);
-
-        if (!$csv->addRow($new_row))
-        {
-            throw new Exception("Add row failed");
-        }
-
-        dump($result);
-
+        return $result;
     }
 
     static private function check ($field, $value)

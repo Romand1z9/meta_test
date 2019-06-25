@@ -3,6 +3,7 @@
 class MainController 
 {
 	protected $layout = 'main';
+	protected $title = 'Главная';
 	protected $content = '';
 
 	public function render()

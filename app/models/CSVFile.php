@@ -5,10 +5,10 @@ class CSVFile
 {
     private $file = NULL;
 
-    public function __construct($file)
+    public function __construct($file, $columns = [])
     {
         $this->file = STORAGE_PATH.$file.'.csv';
-        if (!$this->csv_file_exists($this->file))
+        if (!$this->csv_file_exists($this->file, $columns))
         {
             return FALSE;
         }
@@ -17,7 +17,6 @@ class CSVFile
     public function getRows()
     {
         $fp = file($this->file);
-
 
         var_dump($fp); die;
 
@@ -38,13 +37,16 @@ class CSVFile
 
     }
 
-    public function csv_file_exists($file)
+    public function csv_file_exists($file, $columns = [])
     {
         if (!file_exists($file))
         {
             try
             {
                 $f = fopen($file, "w");
+
+                fwrite($f, implode(",", $columns)."\n");
+
                 fclose($f);
             }
             catch (Exception $e)

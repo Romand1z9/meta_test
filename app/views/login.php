@@ -18,27 +18,27 @@
 				<div class="modal-body">
 					<form method="post" action="/registration" id="form_add">
 					  	<div class="form-group">
-					        <label for="counter_id" class="col-form-label">Имя</label>
+					        <label for="name" class="col-form-label"><?=lang('user.name');?></label>
 					        <input type="text" class="form-control" name="name">
 					    </div>
 					    <div class="form-group">
-					        <label for="counter_id" class="col-form-label">Фамилия</label>
+					        <label for="surname" class="col-form-label"><?=lang('user.surname');?></label>
 					        <input type="text" class="form-control" name="surname">
 					    </div>
 					    <div class="form-group">
-							<label for="counter_data" class="col-form-label">Дата рождения</label>
+							<label for="birthday" class="col-form-label"><?=lang('user.birthday');?></label>
 							<input type="text" class="form-control" name="birthday" placeholder="ДД.ММ.ГГГГ">
 					    </div>
 					    <div class="form-group">
-					        <label for="counter_id" class="col-form-label">Компания</label>
+					        <label for="company" class="col-form-label"><?=lang('user.company');?></label>
 					        <input type="text" class="form-control" name="company">
 					    </div>
 					    <div class="form-group">
-					        <label for="counter_id" class="col-form-label">Должность</label>
+					        <label for="position" class="col-form-label"><?=lang('user.position');?></label>
 					        <input type="text" class="form-control" name="position">
 					    </div>
 					    <div class="form-group">
-					        <label for="counter_id" class="col-form-label">Телефон</label>
+					        <label for="phone" class="col-form-label"><?=lang('user.phone');?></label>
 					        <input type="text" class="form-control" name="phone" placeholder="+79999999999">
 					    </div>   
 					    <p align="center"><button type="submit" class="btn btn-primary btn-lg">Добавить</button><p>
@@ -70,6 +70,56 @@
 			}
 			return (e.keyCode >= 48 && e.keyCode <= 57) ? true : false;
 		});
+
+		$("#form_add").on("submit", function () {
+
+		    var data_for_send = {
+		        'name': $(this).find('input[name=name]').val(),
+                'surname': $(this).find('input[name=surname]').val(),
+                'birthday': $(this).find('input[name=birthday]').val(),
+                'company': $(this).find('input[name=company]').val(),
+                'position': $(this).find('input[name=position]').val(),
+                'phone': $(this).find('input[name=phone]').val(),
+            };
+		    var action = $(this).attr('action');
+
+		    var context = $(this);
+
+            $.ajax({
+                url: action,
+                type: "post",
+                dataType: "json",
+                data: data_for_send,
+                success: function(request)
+                {
+                    if (request.error)
+                    {
+                        swal({
+                            title: request.error,
+                            icon: 'error',
+                        });
+                    }
+                    else if (request.success)
+                    {
+                        context[0].reset();
+                        swal({
+                            title: request.success,
+                            icon: 'success',
+                        });
+                        $("#registrationModal").modal('hide');
+                    }
+                },
+                error: function (error)
+                {
+                    swal({
+                        title: "<?php echo lang('errors.server_error')?>",
+                        icon: 'error',
+                    });
+                }
+            });
+
+		    return false;
+        });
 
 	};
 </script>

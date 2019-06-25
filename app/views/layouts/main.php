@@ -5,7 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="stylesheet" type="text/css" href="/public/assets/css/bootstrap/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="/public/assets/css/style.css">
-	<title>Тестовое задание (Meta)</title>
+	<title><?=$this->title;?></title>
 </head>
 	<body>
 		<div class="container-fluid container-extra">

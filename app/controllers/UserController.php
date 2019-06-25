@@ -8,6 +8,7 @@ class UserController extends MainController
 
 	public function index ()
 	{
+	    $this->title = 'Тестовое задание (Meta)';
 		$this->content = $this->view('login');
 		$this->render();
 	}
@@ -23,7 +24,9 @@ class UserController extends MainController
 			'phone' =>  element('phone', $data),
 		];
 
-		User::addUser($data_for_registration);
+		$result = User::addUser($data_for_registration);
+
+		echo json_encode($result);
 
 	}
 
