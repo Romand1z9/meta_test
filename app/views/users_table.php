@@ -1,3 +1,4 @@
+<a href="/admin/logout" class="btn btn-lg btn-danger admin-logout"><?=lang('admin.logout_button_title');?></a>
 <?php if (!empty($users)): ?>
     <br><br><h3 align="center"><?=lang('admin.registered_users');?></h3><br>
 

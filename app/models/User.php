@@ -70,4 +70,33 @@ class User
                 break;
         }
     }
+
+    static public function login ($login, $password)
+    {
+        if ($login == 'admin' AND md5($password) == "0192023a7bbd73250516f069df18b500")
+        {
+            setcookie('login', '0192023a7bbd73250516f069df18b500');
+            return TRUE;
+        }
+
+        return FALSE;
+    }
+
+    static public function is_login ()
+    {
+        if (isset($_COOKIE['login']) AND $_COOKIE['login'] == "0192023a7bbd73250516f069df18b500")
+        {
+            return TRUE;
+        }
+
+        return FALSE;
+    }
+
+    static public function logout()
+    {
+        setcookie('login', FALSE, time() - 24*3600, '/');
+
+        return TRUE;
+    }
+
 }

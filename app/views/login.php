@@ -1,16 +1,20 @@
 <div class="content">
 	
 	<p align="center">
-		<button class="btn btn-lg btn-success register_button" type="button" data-toggle="modal" data-target="#registrationModal"><?=lang('user.register_button_title');?>
+		<button class="btn btn-lg btn-success register_button login-button" type="button" data-toggle="modal" data-target="#registrationModal"><?=lang('user.register_button_title');?>
 		</button>
 	</p>
-	<br><br>
+	<br>
+    <p align="center">
+        <button class="btn btn-lg btn-primary login-button" id="login_button" type="button" data-togle="modal" data-target="#loginModal"><?=lang('admin.login');?>
+        </button>
+    </p>
 
 	<div class="modal fade" id="registrationModal" tabindex="-1" role="dialog" aria-labelledby="registrationModalLabel" aria-hidden="true">
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title" id="registrationModalLabel" align="center"><?=lang('user.registration');?></h4>
+					<h4 class="modal-title registration-label" align="center"><?=lang('user.registration');?></h4>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -40,7 +44,8 @@
 					    <div class="form-group">
 					        <label for="phone" class="col-form-label"><?=lang('user.phone');?></label>
 					        <input type="text" class="form-control" name="phone" placeholder="+79999999999">
-					    </div>   
+					    </div>
+                        <br>
 					    <p align="center"><button type="submit" class="btn btn-primary btn-lg"><?=lang('user.add_button_title');?></button><p>
 					</form>
 				</div>
@@ -51,10 +56,41 @@
 		</div>
 	</div>
 
+    <div class="modal fade" id="loginModal" tabindex="-1" role="dialog" aria-labelledby="loginModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title registration-label" align="center"><?=lang('admin.login');?></h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" action="/admin" id="form_login">
+                        <div class="form-group">
+                            <label for="login" class="col-form-label"><?=lang('admin.login_title');?></label>
+                            <input type="text" class="form-control" name="login">
+                        </div>
+                        <div class="form-group">
+                            <label for="password" class="col-form-label"><?=lang('admin.password_title');?></label>
+                            <input type="password" class="form-control" name="password">
+                        </div>
+                        <br>
+                        <p align="center"><button type="submit" class="btn btn-primary btn-lg"><?=lang('admin.login_button_title');?></button><p>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-dark btn-lg" data-dismiss="modal"><?=lang('user.cancel_button_title');?></button>
+                </div>
+            </div>
+        </div>
+    </div>
+
 </div>
 
 <script type="text/javascript">
-	window.onload = function() {
+	window.onload = function()
+    {
 
 		$("#registrationModal input[name=birthday]").mask("00.00.0000");
 
@@ -73,7 +109,8 @@
 
 		$("#form_add").on("submit", function () {
 
-		    var data_for_send = {
+		    var data_for_send =
+            {
 		        'name': $(this).find('input[name=name]').val(),
                 'surname': $(this).find('input[name=surname]').val(),
                 'birthday': $(this).find('input[name=birthday]').val(),
@@ -119,6 +156,52 @@
             });
 
 		    return false;
+        });
+
+        $("#login_button").on("click", function () {
+            $("#loginModal").modal('show');
+        });
+
+        $("#form_login").on("submit", function () {
+            var data_for_send =
+            {
+                'login': $(this).find('input[name=login]').val(),
+                'password': $(this).find('input[name=password]').val(),
+            };
+            var action = $(this).attr('action');
+
+            var context = $(this);
+
+            $.ajax({
+                url: action,
+                type: "post",
+                dataType: "json",
+                data: data_for_send,
+                success: function(request)
+                {
+                    if (request.error)
+                    {
+                        swal({
+                            title: request.error,
+                            icon: 'error',
+                        });
+                    }
+                    else if (request.success)
+                    {
+                        context[0].reset();
+                        document.location.href = "/admin";
+                    }
+                },
+                error: function (error)
+                {
+                    swal({
+                        title: "<?php echo lang('errors.server_error')?>",
+                        icon: 'error',
+                    });
+                }
+            });
+
+            return false;
         });
 
 	};

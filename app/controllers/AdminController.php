@@ -1,14 +1,10 @@
 <?php 
 require_once CONTROLLERS_PATH.'MainController.php';
 require_once MODELS_PATH."CSVFile.php";
+require_once MODELS_PATH."User.php";
 
 class AdminController extends MainController
 {
-
-	public function __construct()
-	{
-
-	}
 
 	public function index ()
 	{
@@ -29,7 +25,31 @@ class AdminController extends MainController
 
 	    $this->render();
 
-		//die;
 	}
+
+	public function login($request)
+    {
+        $login = element('login', $request);
+
+        $password = element('password', $request);
+
+        if (User::login($login, $password))
+        {
+            $result = ['success' => 'OK'];
+        }
+        else
+        {
+            $result = ['error' => 'ERROR'];
+        }
+
+        echo json_encode($result);
+
+    }
+
+    public function logout ()
+    {
+        User::logout();
+        header("Location: /");
+    }
 
 }

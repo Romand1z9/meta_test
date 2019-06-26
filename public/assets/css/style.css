@@ -5,7 +5,7 @@
 .content table {
 	text-align: center;
 }
-#registrationModalLabel {
+.registration-label {
 	width: 100%;
 }
 .table-users {
@@ -16,4 +16,16 @@
 .download-csv
 {
 	margin-left: 12.5%;
+}
+.login-button
+{
+	width: 12em;
+}
+.admin-logout
+{
+	position: absolute;
+	right: 5%;
+	font-size: 1em;
+	font-weight: bold;
+	top: 1%;
 }
