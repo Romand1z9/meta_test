@@ -1,7 +1,7 @@
 <div class="content">
 	
 	<p align="center">
-		<button class="btn btn-lg btn-success register_button" type="button" data-toggle="modal" data-target="#registrationModal">Зарегистрироваться
+		<button class="btn btn-lg btn-success register_button" type="button" data-toggle="modal" data-target="#registrationModal"><?=lang('user.register_button_title');?>
 		</button>
 	</p>
 	<br><br>
@@ -10,7 +10,7 @@
 		<div class="modal-dialog modal-lg" role="document">
 			<div class="modal-content">
 				<div class="modal-header">
-					<h4 class="modal-title" id="registrationModalLabel" align="center">Регистрация</h4>
+					<h4 class="modal-title" id="registrationModalLabel" align="center"><?=lang('user.registration');?></h4>
 					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 						<span aria-hidden="true">&times;</span>
 					</button>
@@ -41,11 +41,11 @@
 					        <label for="phone" class="col-form-label"><?=lang('user.phone');?></label>
 					        <input type="text" class="form-control" name="phone" placeholder="+79999999999">
 					    </div>   
-					    <p align="center"><button type="submit" class="btn btn-primary btn-lg">Добавить</button><p>
+					    <p align="center"><button type="submit" class="btn btn-primary btn-lg"><?=lang('user.add_button_title');?></button><p>
 					</form>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-dark btn-lg" data-dismiss="modal">Отмена</button>
+					<button type="button" class="btn btn-dark btn-lg" data-dismiss="modal"><?=lang('user.cancel_button_title');?></button>
 				</div>
 			</div>
 		</div>

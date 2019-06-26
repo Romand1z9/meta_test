@@ -9,7 +9,7 @@
 </head>
 	<body>
 		<div class="container-fluid container-extra">
-			<h1 align="center">Тестовое задание (Meta)</h1>
+			<h1 align="center"><?=$this->title;?></h1>
 			<?php if (!empty($content)):?>
 				<?php echo $content;?>
 			<?php endif;?>

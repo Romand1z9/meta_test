@@ -21,6 +21,11 @@ class MainController
 
 		if (file_exists($file_view))
 		{
+            if (!empty($vars))
+            {
+                extract($vars);
+            }
+
 			ob_start();
 
 			require $file_view;

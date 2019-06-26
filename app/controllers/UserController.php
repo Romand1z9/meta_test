@@ -8,7 +8,7 @@ class UserController extends MainController
 
 	public function index ()
 	{
-	    $this->title = 'Тестовое задание (Meta)';
+	    $this->title = lang('user.page_title');
 		$this->content = $this->view('login');
 		$this->render();
 	}

@@ -4,6 +4,9 @@ require_once MODELS_PATH."CSVFile.php";
 
 class User
 {
+
+    protected static $required_fields = ['name', 'surname', 'phone'];
+
     static public function addUser($data = array())
     {
         $result = [];
@@ -13,17 +16,20 @@ class User
 
             foreach ($data as $field => $value)
             {
-                if (!$value)
+                if (array_search($field, self::$required_fields) !== FALSE AND !$value)
                 {
                     throw new Exception(sprintf(lang('errors.required'), lang('user.'.$field)));
                 }
-                if (!self::check($field, $value))
+                if ($value AND !self::check($field, $value))
                 {
                     throw new Exception(sprintf(lang('errors.incorrect_format'), lang('user.'.$field)));
                 }
             }
 
+            $data = array_merge(['registration_time' => date('H:i:s d.m.Y')], $data);
+
             $csvFile = new CSVFile('users', [
+                lang('user.registration_time'),
                 lang('user.name'),
                 lang('user.surname'),
                 lang('user.birthday'),

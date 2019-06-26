@@ -8,3 +8,12 @@
 #registrationModalLabel {
 	width: 100%;
 }
+.table-users {
+	width: 75%;
+	margin: auto 12.5%;
+	text-align: center;
+}
+.download-csv
+{
+	margin-left: 12.5%;
+}
