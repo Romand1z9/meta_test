@@ -2,10 +2,10 @@
 
 function autoloadClass($class)
 {
-	$filemame = __DIR__."/".$class.".php";
-	if (file_exists($filemame)) 
+	$filename = str_replace("\\", "/",__DIR__."/".$class.".php");
+	if (file_exists($filename))
 	{
-		require_once($filemame);
+		require_once($filename);
 		return;
 	}
 }
