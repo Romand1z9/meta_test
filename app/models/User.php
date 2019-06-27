@@ -1,6 +1,9 @@
 <?php
 
-require_once MODELS_PATH."CSVFile.php";
+namespace models;
+
+use models\CSVFile;
+use Exception;
 
 class User
 {

@@ -1,7 +1,9 @@
-<?php 
-require_once CONTROLLERS_PATH.'MainController.php';
-require_once MODELS_PATH."CSVFile.php";
-require_once MODELS_PATH."User.php";
+<?php
+namespace controllers;
+
+use controllers\MainController;
+use models\CSVFile;
+use models\User;
 
 class AdminController extends MainController
 {

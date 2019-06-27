@@ -1,6 +1,6 @@
 <?php 
 
-/*function autoloadClass($class) 
+function autoloadClass($class)
 {
 	$filemame = __DIR__."/".$class.".php";
 	if (file_exists($filemame)) 
@@ -10,5 +10,5 @@
 	}
 }
 
-spl_autoload_register('autoloadClass');*/
+spl_autoload_register('autoloadClass');
 

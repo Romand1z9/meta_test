@@ -1,7 +1,9 @@
-<?php 
+<?php
 
-require_once CONTROLLERS_PATH.'MainController.php';
-require_once MODELS_PATH.'User.php';
+namespace controllers;
+
+use controllers\MainController;
+use models\User;
 
 class UserController extends MainController
 {

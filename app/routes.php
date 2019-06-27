@@ -1,7 +1,8 @@
-<?php 
-require_once CONTROLLERS_PATH.'UserController.php';
-require_once CONTROLLERS_PATH.'AdminController.php';
-require_once MODELS_PATH."User.php";
+<?php
+
+use controllers\UserController;
+use controllers\AdminController;
+use models\User;
 
 	if ($_SERVER['REQUEST_URI'] == '/admin' AND $_SERVER['REQUEST_METHOD'] == 'GET' && User::is_login()) // Админка
 	{

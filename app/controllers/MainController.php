@@ -1,5 +1,7 @@
 <?php 
 
+namespace controllers;
+
 class MainController 
 {
 	protected $layout = 'main';

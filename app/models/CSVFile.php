@@ -1,5 +1,8 @@
 <?php
 
+namespace models;
+
+use Exception;
 /*
     Класс для работы с csv-файлами.
 */
