@@ -11,4 +11,5 @@ return
     'admin.login_title' => 'Логин',
     'admin.password_title' => 'Пароль',
     'admin.logout_button_title' => 'Выйти',
+    'admin.access_denied' => 'Доступ закрыт',
 ];

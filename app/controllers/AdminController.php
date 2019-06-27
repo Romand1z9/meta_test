@@ -33,14 +33,7 @@ class AdminController extends MainController
 
         $password = element('password', $request);
 
-        if (User::login($login, $password))
-        {
-            $result = ['success' => 'OK'];
-        }
-        else
-        {
-            $result = ['error' => 'ERROR'];
-        }
+        $result = User::login($login, $password);
 
         echo json_encode($result);
 

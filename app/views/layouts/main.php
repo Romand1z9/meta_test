@@ -17,7 +17,7 @@
 
 		<footer>
 			<script type="text/javascript" src="/public/assets/js/jquery.js"></script>
-			<script type="text/javascript" src="/public/assets/js/jquery.mask.min"></script>
+			<script type="text/javascript" src="/public/assets/js/jquery.mask.min.js"></script>
 			<script type="text/javascript" src="/public/assets/js/bootstrap/bootstrap.min.js"></script>
 			<script type="text/javascript" src="/public/assets/js/sweetalert.min.js"></script>
 		</footer>

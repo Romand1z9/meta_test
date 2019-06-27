@@ -7,6 +7,9 @@ class User
 
     protected static $required_fields = ['name', 'surname', 'phone'];
 
+    /*
+        Добавление пользователя.
+    */
     static public function addUser($data = array())
     {
         $result = [];
@@ -54,6 +57,9 @@ class User
         return $result;
     }
 
+    /*
+        Валидация полей.
+    */
     static private function check ($field, $value)
     {
         switch ($field)
@@ -71,17 +77,47 @@ class User
         }
     }
 
+    /*
+        Авторизация пользователя (для админ-панели).
+    */
     static public function login ($login, $password)
     {
-        if ($login == 'admin' AND md5($password) == "0192023a7bbd73250516f069df18b500")
+        $result = [];
+
+        try
         {
-            setcookie('login', '0192023a7bbd73250516f069df18b500');
-            return TRUE;
+            if (!$login)
+            {
+                throw new Exception(sprintf(lang('errors.required'), lang('admin.login_title')));
+            }
+
+            if (!$password)
+            {
+                throw new Exception(sprintf(lang('errors.required'), lang('admin.password_title')));
+            }
+
+            if ($login == 'admin' AND md5($password) == "0192023a7bbd73250516f069df18b500")
+            {
+                setcookie('login', '0192023a7bbd73250516f069df18b500');
+                $result['success'] = 1;
+            }
+            else
+            {
+                $result['error'] = lang('admin.access_denied');
+            }
+
+        }
+        catch (Exception $e)
+        {
+            $result['error'] = $e->getMessage();
         }
 
-        return FALSE;
+        return $result;
     }
 
+    /*
+       Проверка авторизации.
+    */
     static public function is_login ()
     {
         if (isset($_COOKIE['login']) AND $_COOKIE['login'] == "0192023a7bbd73250516f069df18b500")
@@ -92,6 +128,9 @@ class User
         return FALSE;
     }
 
+    /*
+        Выход из учётной записи.
+    */
     static public function logout()
     {
         setcookie('login', FALSE, time() - 24*3600, '/');
